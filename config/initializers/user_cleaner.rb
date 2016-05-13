@@ -1,0 +1,1 @@
+User.delete_all

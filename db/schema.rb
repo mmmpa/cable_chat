@@ -14,11 +14,12 @@
 ActiveRecord::Schema.define(version: 20160512055917) do
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "key",        null: false
-    t.string   "uuid",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                     null: false
+    t.string   "key",                      null: false
+    t.string   "uuid",                     null: false
+    t.integer  "subscription", default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["key"], name: "index_users_on_key", unique: true
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end

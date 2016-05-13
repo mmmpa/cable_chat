@@ -16,7 +16,8 @@ export default class ChatComponent extends React.Component {
       cable: window.ActionCable.createConsumer(),
       state: State.Checking,
       channel: null,
-      messages: []
+      messages: [],
+      members: []
     }, () => this.connect());
   }
 
@@ -38,31 +39,34 @@ export default class ChatComponent extends React.Component {
   }
 
   connect() {
-    this.state.cable.subscriptions.create('ChatChannel', this.channelCallback);
+    this.state.cable.subscriptions.create('ChatChannel', this.chatChannelCallback);
   }
 
-  get channelCallback() {
+  get chatChannelCallback() {
     let that = this;
     return {
       connected: function () {
         console.log('connected');
-        that.setState({channel: this, state: State.Connected});
-        console.log('chat connected', this)
+        that.setState({
+          chatChannel: this,
+          state: State.Connected
+        });
+      },
+      received: function (data) {
+        that.receive(data);
       },
       disconnected: function () {
         console.log('disconnected');
-        that.setState({state: State.Waiting});
-        this.unsubscribe();
-        this.consumer.disconnect();
-      },
-      received: function (data) {
-        console.log('received');
-        that.appendMessage(data);
+        this.clear();
       },
       rejected: function () {
         console.log('rejected');
-        that.setState({state: State.Waiting});
+        this.clear();
+      },
+      clear(){
+        that.setState({chatChannel:null, messages: [], state: State.Waiting});
         this.unsubscribe();
+        this.consumer.disconnect();
       }
     }
   }
@@ -77,16 +81,33 @@ export default class ChatComponent extends React.Component {
   get forRoom() {
     return {
       sendMessage: (message) => this.sendMessage(message),
-      messages: this.state.messages
+      messages: this.state.messages,
+      members: this.state.members
     }
   }
 
   sendMessage(message) {
-    this.state.channel.send({message});
+    this.state.chatChannel.send({message});
   }
 
-  appendMessage(raw) {
-    this.setState({messages: this.state.messages.concat(new MessageData(raw))})
+  receive(raw){
+    console.log(raw)
+    switch(true){
+      case !!raw.message:
+        return this.appendMessage(raw.message);
+      case !!raw.members:
+        return this.reloadMembers(raw.members);
+      default:
+        return;
+    }
+  }
+
+  reloadMembers(members){
+    this.setState({members: members.map((member) => new MemberData(member))});
+  }
+
+  appendMessage(message) {
+    this.setState({messages: this.state.messages.concat(new MessageData(message))});
   }
 
   render() {
@@ -131,15 +152,30 @@ class RoomInComponent extends React.Component {
 class RoomComponent extends React.Component {
   render() {
     return <div>
+      <MemberViewer {...this.props}/>
       <MessageViewer {...this.props}/>
       <MessageSender {...this.props}/>
     </div>
   }
 }
 
+class MemberViewer extends React.Component {
+  renderMessages() {
+    return this.props.members.map(({name, key})=> <div key={key}>
+      <h1>{name}</h1>
+      <p>{key}</p>
+    </div>)
+  }
+
+  render() {
+    console.log(this.props)
+    return <div>{this.renderMessages()}</div>
+  }
+}
+
 class MessageViewer extends React.Component {
   renderMessages() {
-    return this.props.messages.map(({name, message})=> <div>
+    return this.props.messages.map(({name, message, key})=> <div key={key}>
       <h1>{name}</h1>
       <p>{message}</p>
     </div>)
@@ -176,8 +212,16 @@ class MessageSender extends React.Component {
 }
 
 class MessageData {
-  constructor({name, message}) {
+  constructor({name, message, key}) {
     this.name = name;
     this.message = message;
+    this.key = key;
+  }
+}
+
+class MemberData {
+  constructor({name, key}) {
+    this.name = name;
+    this.key = key;
   }
 }
