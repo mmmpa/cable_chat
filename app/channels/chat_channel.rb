@@ -4,6 +4,6 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    ActionCable.server.broadcast "chat_#{params[:room]}", data
+    ActionCable.server.broadcast "chat_#{params[:room]}", {name: current_user.name, message: data['message']}
   end
 end

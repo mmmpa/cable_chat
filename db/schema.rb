@@ -14,15 +14,13 @@
 ActiveRecord::Schema.define(version: 20160512055917) do
 
   create_table "users", force: :cascade do |t|
-    t.string   "login",               null: false
-    t.string   "crypted_password",    null: false
-    t.string   "password_salt",       null: false
-    t.string   "persistence_token"
-    t.string   "single_access_token"
-    t.string   "perishable_token"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["login"], name: "index_users_on_login", unique: true
+    t.string   "name",       null: false
+    t.string   "key",        null: false
+    t.string   "uuid",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_users_on_key", unique: true
+    t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
 end

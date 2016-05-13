@@ -3,10 +3,9 @@
 //
 //= require action_cable
 //= require_self
-//= require_tree ./channels
 
 (function() {
   window.App || (window.App = {});
 
-  App.cable = ActionCable.createConsumer();
+  window.cable = ActionCable.createConsumer();
 });

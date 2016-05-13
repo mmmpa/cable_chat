@@ -1,18 +1,11 @@
 class User < ApplicationRecord
-  acts_as_authentic do |config|
-    config.login_field = :login
-    config.require_password_confirmation = false
-  end
+  validates :name, :key, :uuid,
+            presence: true
 
-  def appear(**options)
-    pp options
-  end
+  before_validation :identify
 
-  def disappear
-
-  end
-
-  def away
-
+  def identify
+    self.key ||= SecureRandom.hex(8)
+    self.uuid ||= SecureRandom.uuid
   end
 end
