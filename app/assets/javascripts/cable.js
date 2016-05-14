@@ -5,7 +5,5 @@
 //= require_self
 
 (function() {
-  window.App || (window.App = {});
-
   window.cable = ActionCable.createConsumer();
 });

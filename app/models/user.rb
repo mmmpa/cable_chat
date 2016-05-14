@@ -2,6 +2,10 @@ class User < ApplicationRecord
   validates :name, :key, :uuid,
             presence: true
 
+  validates :name,
+            format: {with: /\A[A-Za-z0-9]+\Z/},
+            length: {in: 1..10}
+
   before_validation :identify
 
   def identify
@@ -15,7 +19,7 @@ class User < ApplicationRecord
 
   def unsubscribed
     self.subscription -= 1
-    destroy! if disconnected?
+    #destroy! if disconnected?
   end
 
   def disconnected?

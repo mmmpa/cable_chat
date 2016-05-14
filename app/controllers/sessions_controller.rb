@@ -2,8 +2,9 @@ class SessionsController < ApplicationController
   def create
     user = User.create!(session_params)
     cookies.signed[:uuid] = user.uuid
-
-    render nothing: true, status: 201
+    head :ok
+  rescue ActiveRecord::RecordInvalid => e
+    render status: 400, json: {message: e.record.errors.full_messages}
   end
 
   private

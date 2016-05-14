@@ -1,18 +1,17 @@
 class MemberChannel < ApplicationCable::Channel
   def subscribed
-    current_user.subscribed
+    stream_from 'member'
+    broadcast_members
   end
 
   def unsubscribed
-    current_user.unsubscribed
-    members
   end
 
   def broadcast_members
-    ActionCable.server.broadcast('chat', members)
+    ActionCable.server.broadcast('member', members)
   end
 
   def members
-    {members: User.select(:name, :key).to_a.map(&:as_json)}
+    {members: User.all.map { |user| Member.create!(user).render }}
   end
 end
