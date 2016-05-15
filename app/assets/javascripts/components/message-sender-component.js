@@ -41,7 +41,7 @@ export default class MessageSenderComponent extends React.Component {
           送信
         </button>
       </div>
-    </div>
+    </div>;
   }
 }
 

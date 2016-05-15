@@ -33,6 +33,11 @@ export default class MemberViewerComponent extends React.Component {
     </li>);
   }
 
+  exit(e) {
+    e.preventDefault();
+    this.props.exit();
+  }
+
   get css() {
     return {
       height: this.state.height
@@ -43,6 +48,12 @@ export default class MemberViewerComponent extends React.Component {
     console.log('render member');
     return <div className="room-member">
       <ul className="wrapper">{this.renderMessages()}</ul>
+      <div className="button-area">
+        <button className="btn btn-danger" onClick={(e) => this.exit(e)}>
+          <Fa icon="sign-out"/>
+          退室
+        </button>
+      </div>
     </div>
   }
 }

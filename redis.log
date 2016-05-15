@@ -1,0 +1,152 @@
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.17 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 7777
+ |    `-._   `._    /     _.-'    |     PID: 14791
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[14791] 15 May 07:54:19.621 # Server started, Redis version 2.8.17
+[14791] 15 May 07:54:19.621 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[14791] 15 May 07:54:19.621 * DB loaded from disk: 0.000 seconds
+[14791] 15 May 07:54:19.621 * The server is now ready to accept connections on port 7777
+[14791] 15 May 07:54:19.621 - 0 clients connected (0 slaves), 752088 bytes in use
+[14791 | signal handler] (1463266462) Received SIGINT scheduling shutdown...
+[14791] 15 May 07:54:22.225 # User requested shutdown...
+[14791] 15 May 07:54:22.225 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.17 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 7777
+ |    `-._   `._    /     _.-'    |     PID: 14795
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[14795] 15 May 07:54:26.197 # Server started, Redis version 2.8.17
+[14795] 15 May 07:54:26.197 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[14795] 15 May 07:54:26.197 * DB loaded from disk: 0.000 seconds
+[14795] 15 May 07:54:26.197 * The server is now ready to accept connections on port 7777
+[14795] 15 May 07:54:26.198 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:54:31.207 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:54:36.215 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:54:41.224 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:54:46.233 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:54:51.241 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:54:56.250 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:55:01.258 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:55:06.267 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:55:11.276 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:55:16.285 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:55:21.293 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:55:26.302 - 0 clients connected (0 slaves), 752088 bytes in use
+[14795] 15 May 07:55:27.484 - Accepted 127.0.0.1:44152
+[14795] 15 May 07:55:27.550 - Accepted 127.0.0.1:44153
+[14795] 15 May 07:55:31.310 - 2 clients connected (0 slaves), 794120 bytes in use
+[14795] 15 May 07:55:36.318 - 2 clients connected (0 slaves), 794120 bytes in use
+[14795] 15 May 07:55:41.326 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:55:46.335 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:55:51.342 - 2 clients connected (0 slaves), 794120 bytes in use
+[14795] 15 May 07:55:56.351 - 2 clients connected (0 slaves), 794120 bytes in use
+[14795] 15 May 07:56:01.359 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:06.368 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:11.377 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:16.385 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:21.394 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:26.402 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:31.411 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:36.420 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:41.429 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:46.438 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:51.446 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:56:56.455 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:01.464 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:06.473 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:11.484 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:16.493 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:21.501 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:26.510 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:31.519 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:36.527 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:41.535 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:46.544 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:51.552 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:57:56.559 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:01.567 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:06.575 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:11.583 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:16.592 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:21.600 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:26.609 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:31.621 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:36.629 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:41.637 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:46.645 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:51.654 - 2 clients connected (0 slaves), 794520 bytes in use
+[14795] 15 May 07:58:53.643 - Accepted 127.0.0.1:44207
+[14795] 15 May 07:58:56.662 - 3 clients connected (0 slaves), 815384 bytes in use
+[14795] 15 May 07:59:01.671 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:06.679 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:11.687 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:16.695 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:21.704 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:26.712 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:31.720 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:36.729 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:41.737 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:46.745 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:51.754 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 07:59:56.762 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 08:00:01.770 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 08:00:06.779 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 08:00:11.787 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795] 15 May 08:00:16.795 - 3 clients connected (0 slaves), 815424 bytes in use
+[14795 | signal handler] (1463266820) Received SIGINT scheduling shutdown...
+[14795] 15 May 08:00:20.502 # User requested shutdown...
+[14795] 15 May 08:00:20.502 # Redis is now ready to exit, bye bye...
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.17 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 15353
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[15353] 15 May 08:00:26.866 # Server started, Redis version 2.8.17
+[15353] 15 May 08:00:26.867 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[15353] 15 May 08:00:26.867 * DB loaded from disk: 0.000 seconds
+[15353] 15 May 08:00:26.867 * The server is now ready to accept connections on port 6379
+[15353] 15 May 08:00:26.867 - 0 clients connected (0 slaves), 752088 bytes in use
+[15353] 15 May 08:00:31.875 - 0 clients connected (0 slaves), 752088 bytes in use
+[15353 | signal handler] (1463266835) Received SIGINT scheduling shutdown...
+[15353] 15 May 08:00:35.681 # User requested shutdown...
+[15353] 15 May 08:00:35.681 # Redis is now ready to exit, bye bye...

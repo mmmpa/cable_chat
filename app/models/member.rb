@@ -21,7 +21,7 @@ class Member
   def render
     {
       name: user.name,
-      key: user.key
+      k: user.key
     }
   end
 end

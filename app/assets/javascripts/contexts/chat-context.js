@@ -32,9 +32,11 @@ export default class ChatContext extends React.Component {
       },
       disconnected: ()=> {
         this.setState({
+          state: State.Waiting,
           members: [],
-          messages: [],
-          state: State.Waiting
+          rawMessages: [],
+          x: -1,
+          y: -1
         });
       },
       meReceived: (me) => {
@@ -51,7 +53,6 @@ export default class ChatContext extends React.Component {
 
   get forRoomIn() {
     return {
-      state: this.state,
       message: this.state.message,
       knock: (name) => this.knock(name)
     }
@@ -62,10 +63,15 @@ export default class ChatContext extends React.Component {
 
     return {
       messages, members, invisibles, x, y, me,
+      exit: (...args) => this.exit(...args),
       posit: (...args) => this.posit(...args),
       sendMessage: (...args) => this.sendMessage(...args),
       toggleVisibility: (...args) => this.toggleVisibility(...args)
     };
+  }
+
+  exit(){
+    this.state.cable.disconnect();
   }
 
   knock(name) {

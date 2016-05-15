@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   before_validation :identify
 
+  scope :in, -> { where('subscription > 0') }
+
   def identify
     self.key ||= SecureRandom.hex(8)
     self.uuid ||= SecureRandom.uuid
@@ -15,11 +17,14 @@ class User < ApplicationRecord
 
   def subscribed
     self.subscription += 1
+    self.save
   end
 
   def unsubscribed
-    self.subscription -= 1
-    #destroy! if disconnected?
+    unless destroyed?
+      self.subscription -= 1
+      self.save
+    end
   end
 
   def disconnected?

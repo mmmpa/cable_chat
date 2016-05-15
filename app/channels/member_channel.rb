@@ -1,10 +1,14 @@
 class MemberChannel < ApplicationCable::Channel
   def subscribed
     stream_from 'member'
-    broadcast_members
   end
 
   def unsubscribed
+    broadcast_members
+  end
+
+  def hello
+    broadcast_members
   end
 
   def broadcast_members
@@ -12,6 +16,6 @@ class MemberChannel < ApplicationCable::Channel
   end
 
   def members
-    {members: User.all.map { |user| Member.create!(user).render }}
+    {members: User.in.map { |user| Member.create!(user).render }}
   end
 end
