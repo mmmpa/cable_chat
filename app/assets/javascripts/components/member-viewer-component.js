@@ -2,11 +2,14 @@ import * as React from 'react';
 import Fa from './fa';
 
 export default class MemberViewerComponent extends React.Component {
-
   componentWillMount() {
     this.setState({
       height: 0
     });
+  }
+
+  shouldComponentUpdate(props) {
+    return this.props.invisibles !== props.invisibles || this.props.members !== props.members;
   }
 
   toddleVisible(visibility, key) {

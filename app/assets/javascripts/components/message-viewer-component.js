@@ -1,8 +1,16 @@
 import * as React from 'react';
 
 export default class MessageViewerComponent extends React.Component {
+  shouldComponentUpdate(props) {
+    return this.props.messages !== props.messages;
+  }
+
+  classes(isKilled) {
+    return isKilled ? 'message-box killed' : 'message-box';
+  }
+
   renderMessages() {
-    return this.props.messages.map(({name, message, userKey, key, x, y})=> <div className="message-box" key={key} style={{top: y, left: x - 200}}>
+    return this.props.messages.map(({name, message, userKey, key, x, y, isKilled})=> <div className={this.classes(isKilled)} key={key} style={{top: y, left: x - 200}}>
       <div className="name-container">
         <h1>{name}</h1>
         <h2>[{userKey}]</h2>
@@ -18,6 +26,7 @@ export default class MessageViewerComponent extends React.Component {
   }
 
   render() {
+    console.log('render messages');
     return <div className="room-message" onClick={(e)=> this.posit(e)}>
       <div className="help">
         <p>この背景色のいずれかの場所をクリックすると入力画面が出現します。</p>

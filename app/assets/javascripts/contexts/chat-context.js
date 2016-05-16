@@ -9,6 +9,11 @@ import RoomComponent from '../components/room-component';
 const request = require('superagent');
 
 export default class ChatContext extends React.Component {
+  constructor() {
+    super();
+    this.intervalIds = [];
+  }
+
   componentWillMount() {
     this.setState({
       cable: new ChatCable(this.cableCallback),
@@ -29,6 +34,7 @@ export default class ChatContext extends React.Component {
         this.setState({
           state: State.Connected
         });
+        this.intervalIds.push(setInterval(() => this.checkTimer(), 1000));
       },
       disconnected: ()=> {
         this.setState({
@@ -38,6 +44,8 @@ export default class ChatContext extends React.Component {
           x: -1,
           y: -1
         });
+        this.intervalIds.forEach((id) => clearInterval(id));
+
       },
       meReceived: (me) => {
         this.setState({me});
@@ -70,7 +78,16 @@ export default class ChatContext extends React.Component {
     };
   }
 
-  exit(){
+  checkTimer() {
+    let messages = this.state.messages.filter((message) => {
+      message.die();
+      return !message.isDead;
+    });
+
+    this.setState({messages});
+  }
+
+  exit() {
     this.state.cable.disconnect();
   }
 
