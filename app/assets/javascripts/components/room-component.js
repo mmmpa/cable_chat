@@ -9,7 +9,7 @@ export default class RoomComponent extends React.Component {
       <MemberViewer {...this.props}/>
       <MessageViewer {...this.props}/>
       <MessageSender {...this.props}/>
-    </div>
+    </div>;
   }
 }
 

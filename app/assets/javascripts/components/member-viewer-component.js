@@ -13,14 +13,14 @@ export default class MemberViewerComponent extends React.Component {
   }
 
   toddleVisible(visibility, key) {
-    this.props.toggleVisibility(visibility, key)
+    this.props.toggleVisibility(visibility, key);
   }
 
   renderIcon(key) {
     let visibility = !this.props.invisibles.has(key);
     return visibility
       ? <Fa icon="eye"/>
-      : <Fa icon="eye-slash"/>
+      : <Fa icon="eye-slash"/>;
   }
 
   renderMessages() {
@@ -57,7 +57,7 @@ export default class MemberViewerComponent extends React.Component {
           退室
         </button>
       </div>
-    </div>
+    </div>;
   }
 }
 

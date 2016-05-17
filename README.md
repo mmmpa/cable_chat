@@ -1,1 +1,3 @@
 # ActionCableを試すリポジトリ
+
+# Connectionについて

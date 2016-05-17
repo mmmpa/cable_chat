@@ -56,14 +56,14 @@ export default class ChatContext extends React.Component {
       memberReceived: (data)=> {
         this.reloadMembers(data);
       }
-    }
+    };
   }
 
   get forRoomIn() {
     return {
       message: this.state.message,
       knock: (name) => this.knock(name)
-    }
+    };
   }
 
   get forRoom() {
@@ -150,7 +150,9 @@ export default class ChatContext extends React.Component {
       case State.Trying:
         return <RoomInComponent {...this.forRoomIn}/>;
       case State.Connected:
-        return <RoomComponent {...this.forRoom}/>
+        return <RoomComponent {...this.forRoom}/>;
+      default:
+        return null;
     }
   }
 }

@@ -1,4 +1,4 @@
-import {lifespan, offspan, getNow} from '../constants/lifespan'
+import {lifespan, offspan, getNow} from '../constants/lifespan';
 
 export default class Message {
   constructor({name, message, key, user_key, x, y}) {

@@ -1,5 +1,5 @@
-import Member from '../models/member-data'
-import Message from '../models/message-data'
+import Member from '../models/member-data';
+import Message from '../models/message-data';
 
 export default class ChatCable {
   constructor({connected, disconnected, messageReceived, memberReceived, meReceived}) {
@@ -32,7 +32,7 @@ export default class ChatCable {
   }
 
   sendMessage(message, x, y) {
-    this.messageChannel && this.messageChannel.send({message, x, y})
+    this.messageChannel && this.messageChannel.send({message, x, y});
   }
 
   get sessionChannelCallback() {
@@ -66,7 +66,7 @@ export default class ChatCable {
 
         that.disconnected();
       }
-    }
+    };
   }
 
   get messageChannelCallback() {
@@ -89,7 +89,7 @@ export default class ChatCable {
         that.messageChannel = null;
         this.unsubscribe();
       }
-    }
+    };
   }
 
   get memberChannelCallback() {
@@ -101,7 +101,7 @@ export default class ChatCable {
         this.perform('hello');
       },
       received: function (data) {
-        console.log(data)
+        console.log(data);
         that.memberReceived(data.members.map((member) => new Member(member)));
       },
       disconnected: function () {

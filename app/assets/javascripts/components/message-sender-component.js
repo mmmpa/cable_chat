@@ -4,7 +4,7 @@ export default class MessageSenderComponent extends React.Component {
   componentWillMount() {
     this.setState({
       message: ''
-    })
+    });
   }
 
   sendMessage(e) {
@@ -19,7 +19,7 @@ export default class MessageSenderComponent extends React.Component {
     return {
       top: this.props.y,
       left: this.props.x
-    }
+    };
   }
 
   render() {

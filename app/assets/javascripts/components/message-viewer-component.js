@@ -18,7 +18,7 @@ export default class MessageViewerComponent extends React.Component {
       <div className="message-container">
         {message}
       </div>
-    </div>)
+    </div>);
   }
 
   posit(e) {
@@ -34,7 +34,7 @@ export default class MessageViewerComponent extends React.Component {
         <p>左のメンバー画面から、特定のメッセージの表示非表示の切り替えが行えます。</p>
       </div>
       {this.renderMessages()}
-    </div>
+    </div>;
   }
 }
 

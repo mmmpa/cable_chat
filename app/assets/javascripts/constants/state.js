@@ -3,5 +3,5 @@ export const State = {
   Checking: 'Checking',
   Trying: 'Trying',
   Waiting: 'Waiting',
-  WaitingRetry: 'WaitingRetry',
+  WaitingRetry: 'WaitingRetry'
 };

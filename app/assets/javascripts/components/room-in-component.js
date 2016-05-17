@@ -5,12 +5,12 @@ export default class RoomInComponent extends React.Component {
   componentWillMount() {
     this.setState({
       name: ''
-    })
+    });
   }
 
   knock(e) {
     e.preventDefault();
-    this.props.knock(this.state.name)
+    this.props.knock(this.state.name);
   }
 
   renderMessage() {
@@ -20,7 +20,7 @@ export default class RoomInComponent extends React.Component {
 
     return <div className="alert alert-danger">
       <ul>{this.props.message.map((m, i)=> <li key={i}>{m}</li>)}</ul>
-    </div>
+    </div>;
   }
 
   render() {
