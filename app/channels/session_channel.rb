@@ -1,7 +1,7 @@
 class SessionChannel < ApplicationCable::Channel
   def subscribed
-    current_user.subscribed
     transmit(me: Member.create!(current_user).render)
+    current_user.subscribed
   end
 
   def unsubscribed
@@ -9,8 +9,7 @@ class SessionChannel < ApplicationCable::Channel
   end
 
   def exit
-    current_user.destroy!
-    transmit(exit: true)
-    connection.close
+    current_user.exit!
+    connection.exit
   end
 end

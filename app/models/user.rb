@@ -10,6 +10,14 @@ class User < ApplicationRecord
 
   scope :in, -> { where('subscription > 0') }
 
+  class << self
+    def reject_or_create!(uuid, params)
+      user = find_by(uuid: uuid)
+      raise Already if user.try(:connected?)
+      create!(params)
+    end
+  end
+
   def identify
     self.key ||= SecureRandom.hex(8)
     self.uuid ||= SecureRandom.uuid
@@ -17,17 +25,31 @@ class User < ApplicationRecord
 
   def subscribed
     self.subscription += 1
-    self.save
+    save
+  end
+
+  def exit!
+    self.subscription = 0
+    save
+    destroy!
   end
 
   def unsubscribed
     unless destroyed?
       self.subscription -= 1
-      self.save
+      save
     end
+  end
+
+  def connected?
+    subscription != 0
   end
 
   def disconnected?
     subscription == 0
+  end
+
+  class Already < StandardError
+
   end
 end

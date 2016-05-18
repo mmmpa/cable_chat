@@ -1,4 +1,4 @@
-import {lifespan, offspan, getNow} from '../constants/lifespan';
+import {lifespan, offspan} from '../constants/lifespan';
 
 export default class Message {
   constructor({name, message, key, user_key, x, y}) {
@@ -8,7 +8,7 @@ export default class Message {
     this.userKey = user_key;
     this.x = x;
     this.y = y;
-    this.createdAt = getNow();
+    this.createdAt = this.now;
     this.isKilled = false;
     this.diedAt = 0;
   }
@@ -19,14 +19,18 @@ export default class Message {
     }
 
     this.isKilled = true;
-    this.diedAt = getNow();
+    this.diedAt = this.now;
   }
 
+  get now(){
+    return new Date().getTime();
+  }
+  
   get isDying() {
-    return getNow() - this.createdAt > lifespan;
+    return this.now - this.createdAt > lifespan;
   }
 
   get isDead(){
-    return this.isKilled && getNow() - this.diedAt > offspan;
+    return this.isKilled && this.now - this.diedAt > offspan;
   }
 }

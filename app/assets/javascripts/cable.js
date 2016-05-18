@@ -4,6 +4,3 @@
 //= require action_cable
 //= require_self
 
-(function() {
-  window.cable = ActionCable.createConsumer();
-});
