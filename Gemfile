@@ -50,3 +50,20 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'browserify-rails'
 gem 'authlogic'
 gem 'redis'
+
+group :test do
+  gem 'capybara'
+  gem 'codeclimate-test-reporter'
+  gem 'coveralls'
+  gem 'faker'
+  gem 'factory_girl_rails'
+  gem 'poltergeist'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rspec-html-matchers'
+  gem 'simplecov'
+  gem 'simplecov-rcov'
+  gem 'sqlite3'
+
+  gem 'websocket-client-simple'
+end

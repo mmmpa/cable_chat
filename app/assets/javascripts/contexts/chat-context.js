@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ChatCable from '../models/chat-cable';
+import Invisible from '../models/invisible';
 import token from '../utils/token';
 import {State} from '../constants/state';
 import SessionWaiterComponent from '../components/session-waiter-component';
@@ -18,7 +19,7 @@ export default class ChatContext extends React.Component {
     this.setState({
       cable: new ChatCable(this.cableCallback),
       state: State.Checking,
-      invisibles: new Set(),
+      invisibles: new Invisible(),
       rawMessages: [],
       messages: [],
       members: [],
@@ -134,8 +135,8 @@ export default class ChatContext extends React.Component {
   }
 
   toggleVisibility(visibility, key) {
-    let invisibles = new Set(this.state.invisibles);
-    visibility ? invisibles.delete(key) : invisibles.add(key);
+    let invisibles = new Invisible(this.state.invisibles);
+    visibility ? invisibles.del(key) : invisibles.add(key);
     this.setState({invisibles}, ()=> this.deliverMessages());
   }
 
