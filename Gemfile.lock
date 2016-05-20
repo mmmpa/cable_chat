@@ -57,6 +57,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-puma (1.0.1)
+      capybara
+      puma
     cliver (0.3.2)
     codeclimate-test-reporter (0.5.0)
       simplecov (>= 0.7.1, < 1.0.0)
@@ -253,6 +256,7 @@ DEPENDENCIES
   browserify-rails
   byebug
   capybara
+  capybara-puma
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   coveralls

@@ -3,7 +3,6 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
-      logger.info 'connect'
       self.current_user = find_user_or_reject
       create_disconnection
     end

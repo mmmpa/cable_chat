@@ -63,7 +63,6 @@ group :test do
   gem 'rspec-html-matchers'
   gem 'simplecov'
   gem 'simplecov-rcov'
-  gem 'sqlite3'
-
+  gem 'capybara-puma'
   gem 'websocket-client-simple'
 end

@@ -24,9 +24,6 @@ end
 
 Dir[Rails.root.join('spec/supports/**/*.rb')].each { |f| require f }
 
-Capybara.app_host = 'http://localhost:3007'
-Capybara.server_port = 30007
-
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

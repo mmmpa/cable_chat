@@ -5,7 +5,6 @@ import ChatContext from 'contexts/chat-context';
 class Chat {
   static run(dom) {
     ReactDOM.render(<ChatContext/>, dom);
-    
   }
 }
 

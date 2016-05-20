@@ -157,3 +157,10 @@ export default class ChatContext extends React.Component {
     }
   }
 }
+
+class TestComponent extends React.Component {
+  render() {
+    console.log(this.props)
+    return <div>{this.props.state}</div>;
+  }
+}
