@@ -1,4 +1,4 @@
-def wait_for(wait = 2, &block)
+def wait_for(wait = 10, &block)
   start = Time.now.to_i
   store = block.().dup
   loop do
@@ -7,7 +7,7 @@ def wait_for(wait = 2, &block)
   end
 end
 
-def wait_for_matching(wait = 2, &block)
+def wait_for_matching(wait = 10, &block)
   start = Time.now.to_i
   loop do
     result = block.()
