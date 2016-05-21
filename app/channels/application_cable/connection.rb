@@ -7,16 +7,6 @@ module ApplicationCable
       create_disconnection
     end
 
-    def receive(websocket_message) #:nodoc:
-      pp websocket_message
-      send_async :dispatch_websocket_message, websocket_message
-    end
-
-    def transmit(cable_message) # :nodoc:
-      pp cable_message
-      websocket.transmit encode(cable_message)
-    end
-
     def me
       internal_channel
     end
