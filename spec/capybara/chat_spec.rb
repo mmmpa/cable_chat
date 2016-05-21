@@ -1,29 +1,14 @@
 require 'capybara_helper'
 
-def mount_path
-  @mount_path ||= begin
-    mount = Rails.application.config.action_cable.mount_path
-    host = Capybara.current_session.server.host
-    port = Capybara.current_session.server.port
-    "http://#{host}:#{port}#{mount}"
-  end
-end
-
-def wait_for(wait = 2, &block)
-  start = Time.now.to_i
-  store = block.()
-  loop do
-    break if block.() != store || Time.now.to_i - start > wait
-  end
-end
-
 feature "Connect", :type => :feature do
   before :each do |ex|
     ready_ss(ex, 800)
   end
 
-  let(:ws) { WebSocket::Client::Simple.connect(mount_path) }
+  let(:cookie) { "uuid=#{page.driver.cookies['uuid'].value}" }
+  let(:ws) { WebSocket::Client::Simple.connect(mount_path, headers: {'Cookie' => cookie}) }
   let(:rejection_type) { ActionCable::INTERNAL[:message_types][:rejection] }
+  let(:connected_type) { ActionCable::INTERNAL[:message_types][:welcome] }
 
   scenario 'reject when no session' do
     received = {}
@@ -39,6 +24,7 @@ feature "Connect", :type => :feature do
     visit '/'
     find('.room-in-name').set('aaaa')
     find('.room-in-button').click
+    find('.room-member')
 
     received = {}
     ws.on :message do |data|
@@ -46,7 +32,7 @@ feature "Connect", :type => :feature do
     end
 
     wait_for { received }
-    expect(received['type']).to eq(rejection_type)
+    expect(received['type']).to eq(connected_type)
   end
 
 end
