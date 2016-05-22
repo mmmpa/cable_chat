@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160512055917) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "users", force: :cascade do |t|
     t.string   "name",                     null: false
     t.string   "key",                      null: false
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20160512055917) do
     t.integer  "subscription", default: 0, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.index ["key"], name: "index_users_on_key", unique: true
-    t.index ["uuid"], name: "index_users_on_uuid", unique: true
+    t.index ["key"], name: "index_users_on_key", unique: true, using: :btree
+    t.index ["uuid"], name: "index_users_on_uuid", unique: true, using: :btree
   end
 
 end

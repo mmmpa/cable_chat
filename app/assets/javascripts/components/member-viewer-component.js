@@ -52,7 +52,7 @@ export default class MemberViewerComponent extends React.Component {
     return <div className="room-member">
       <ul className="wrapper">{this.renderMessages()}</ul>
       <div className="button-area">
-        <button className="btn btn-danger" onClick={(e) => this.exit(e)}>
+        <button className="room-out-button btn btn-danger" onClick={(e) => this.exit(e)}>
           <Fa icon="sign-out"/>
           退室
         </button>

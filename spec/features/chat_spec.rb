@@ -11,16 +11,26 @@ feature "Connect", :type => :feature do
   let(:connected_type) { ActionCable::INTERNAL[:message_types][:welcome] }
 
 
-  scenario 'receive my data when has session' do
+  scenario 'in to out' do
     visit '/'
+    find('.room-in-name')
+    take_ss('初期')
     find('.room-in-name').set('aaaa')
+    take_ss('名前入力')
     find('.room-in-button').click
     find('.room-member')
-    find('.room-message').click
+    take_ss('入室ずみ')
+    page.driver.click(500, 100)
+    take_ss('メッセージボックス表示')
     find('.message-container textarea').set('message')
+    take_ss('メッセージ入力')
     find('.message-container button').click
-
-    take_ss('ss', 1)
+    find('.room-message .message-box')
+    take_ss('メッセージ送信後')
+    find('.room-out-button').click
+    find('.room-in-name')
+    take_ss('退室後')
+    sleep 0.1
   end
 
   scenario '2' do
@@ -40,6 +50,10 @@ feature "Connect", :type => :feature do
     efg.say(600, 200, 'say say say')
 
     take_ss('ss', 1)
+
+    find('.room-out-button').click
+    find('.room-in-name')
+    sleep 0.1
   end
 end
 
@@ -56,5 +70,9 @@ class Friend
     @session.driver.click(x, y)
     @session.find('.message-container textarea').set(message)
     @session.find('.message-container button').click
+  end
+
+  def away
+    @session..driver.browser.quit
   end
 end
