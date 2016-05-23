@@ -1,3 +1,4 @@
+=begin
 class ActiveRecord::Base
   mattr_accessor :shared_connection
   @@shared_connection = nil
@@ -8,3 +9,4 @@ class ActiveRecord::Base
 end
 
 ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+=end

@@ -10,51 +10,52 @@ feature "Connect", :type => :feature do
   let(:rejection_type) { ActionCable::INTERNAL[:message_types][:rejection] }
   let(:connected_type) { ActionCable::INTERNAL[:message_types][:welcome] }
 
+  20.times do
 
-  scenario 'in to out' do
-    visit '/'
-    find('.room-in-name')
-    take_ss('初期')
-    find('.room-in-name').set('aaaa')
-    take_ss('名前入力')
-    find('.room-in-button').click
-    find('.room-member')
-    take_ss('入室ずみ')
-    page.driver.click(500, 100)
-    take_ss('メッセージボックス表示')
-    find('.message-container textarea').set('message')
-    take_ss('メッセージ入力')
-    find('.message-container button').click
-    find('.room-message .message-box')
-    take_ss('メッセージ送信後')
-    find('.room-out-button').click
-    find('.room-in-name')
-    take_ss('退室後')
-    sleep 0.1
+    scenario 'in to out' do
+      visit '/'
+      find('.room-in-name')
+      take_ss('初期')
+      find('.room-in-name').set('aaaa')
+      take_ss('名前入力')
+      find('.room-in-button').click
+      find('.room-member')
+      take_ss('入室ずみ')
+      page.driver.click(500, 100)
+      take_ss('メッセージボックス表示')
+      find('.message-container textarea').set('message')
+      take_ss('メッセージ入力')
+      find('.message-container button').click
+      find('.room-message .message-box')
+      take_ss('メッセージ送信後')
+      find('.room-out-button').click
+      find('.room-in-name')
+      take_ss('退室後')
+    end
+
+    scenario '2' do
+      visit '/'
+      find('.room-in-name').set('aaaa')
+      find('.room-in-button').click
+      find('.room-member')
+      page.driver.click(500, 100)
+      find('.message-container textarea').set('message')
+      find('.message-container button').click
+
+      abcd = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'abcd')
+      abcd.say(600, 100, 'say say say')
+
+
+      efg = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'efg')
+      efg.say(600, 200, 'say say say')
+
+      take_ss('ss', 1)
+
+      abcd.away
+      efg.away
+    end
   end
 
-  scenario '2' do
-    visit '/'
-    find('.room-in-name').set('aaaa')
-    find('.room-in-button').click
-    find('.room-member')
-    page.driver.click(500, 100)
-    find('.message-container textarea').set('message')
-    find('.message-container button').click
-
-    abcd = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'abcd')
-    abcd.say(600, 100, 'say say say')
-
-
-    efg = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'efg')
-    efg.say(600, 200, 'say say say')
-
-    take_ss('ss', 1)
-
-    find('.room-out-button').click
-    find('.room-in-name')
-    sleep 0.1
-  end
 end
 
 class Friend
@@ -73,6 +74,6 @@ class Friend
   end
 
   def away
-    @session..driver.browser.quit
+    @session.reset_session!
   end
 end
