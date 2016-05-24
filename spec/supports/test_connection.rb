@@ -1,5 +1,5 @@
 class TestConnection
-  attr_reader :identifiers, :logger, :current_user, :server, :transmissions, :exited
+  attr_reader :identifiers, :logger, :current_user, :server, :transmissions, :closed
 
   delegate :pubsub, to: :server
 
@@ -25,7 +25,7 @@ class TestConnection
     @coder.encode cable_message
   end
 
-  def exit
-    @exited = true
+  def close
+    @closed = true
   end
 end

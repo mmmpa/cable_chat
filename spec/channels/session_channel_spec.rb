@@ -33,7 +33,7 @@ RSpec.describe SessionChannel, :type => :model do
     end
 
     it 'call connection exit' do
-      expect(connection.exited).to be_truthy
+      expect(connection.closed).to be_truthy
     end
   end
 end

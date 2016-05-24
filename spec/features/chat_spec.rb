@@ -10,52 +10,104 @@ feature "Connect", :type => :feature do
   let(:rejection_type) { ActionCable::INTERNAL[:message_types][:rejection] }
   let(:connected_type) { ActionCable::INTERNAL[:message_types][:welcome] }
 
-  20.times do
-
-    scenario 'in to out' do
-      visit '/'
-      find('.room-in-name')
-      take_ss('初期')
-      find('.room-in-name').set('aaaa')
-      take_ss('名前入力')
-      find('.room-in-button').click
-      find('.room-member')
-      take_ss('入室ずみ')
-      page.driver.click(500, 100)
-      take_ss('メッセージボックス表示')
-      find('.message-container textarea').set('message')
-      take_ss('メッセージ入力')
-      find('.message-container button').click
-      find('.room-message .message-box')
-      take_ss('メッセージ送信後')
-      find('.room-out-button').click
-      find('.room-in-name')
-      take_ss('退室後')
-    end
-
-    scenario '2' do
-      visit '/'
-      find('.room-in-name').set('aaaa')
-      find('.room-in-button').click
-      find('.room-member')
-      page.driver.click(500, 100)
-      find('.message-container textarea').set('message')
-      find('.message-container button').click
-
-      abcd = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'abcd')
-      abcd.say(600, 100, 'say say say')
-
-
-      efg = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'efg')
-      efg.say(600, 200, 'say say say')
-
-      take_ss('ss', 1)
-
-      abcd.away
-      efg.away
-    end
+  scenario '入室から退室まで' do
+    visit '/'
+    find('.room-in-name')
+    take_ss('初期')
+    find('.room-in-name').set('aaaa')
+    take_ss('名前入力')
+    find('.room-in-button').click
+    find('.room-member')
+    take_ss('入室ずみ')
+    page.driver.click(500, 100)
+    take_ss('メッセージボックス表示')
+    find('.message-container textarea').set('message')
+    take_ss('メッセージ入力')
+    find('.message-container button').click
+    find('.room-message .message-box')
+    take_ss('メッセージ送信後')
+    find('.room-out-button').click
+    find('.room-in-name')
+    take_ss('退室後')
   end
 
+  scenario '複数ウィンドウでの入室退室' do
+    window1 = current_window
+    window2 = open_new_window
+
+    switch_to_window(window2)
+
+    visit '/'
+    find('.room-in-name')
+    find('.room-in-name').set('aaaa')
+    find('.room-in-button').click
+    find('.room-member')
+    take_ss('window2_入室ずみ')
+
+    switch_to_window(window1)
+    visit '/'
+    take_ss('window1_開いた段階で入室ずみ')
+
+    find('.room-member')
+    find('.room-out-button').click
+    find('.room-in-name')
+    take_ss('window1_退室済み')
+
+    switch_to_window(window2)
+
+    find('.room-in-name')
+    take_ss('window2_自動退室済み')
+  end
+
+  scenario '入室済みの場合、そちらの名前が優先' do
+    window1 = current_window
+    window2 = open_new_window
+
+    visit '/'
+    switch_to_window(window2)
+
+    visit '/'
+    find('.room-in-name')
+    find('.room-in-name').set('aaaa')
+    find('.room-in-button').click
+    find('.room-member')
+    take_ss('window2_aaaaで入室ずみ')
+
+    switch_to_window(window1)
+
+    find('.room-in-name').set('abcd')
+    take_ss('window1_abcdで入室')
+    find('.room-in-button').click
+    find('.room-member .name')
+    take_ss('window1_aaaaで入室扱い')
+
+    window1.session.reset_session!
+    window2.session.reset_session!
+  end
+
+
+  scenario 'マルチユーザー' do
+    visit '/'
+    find('.room-in-name').set('aaaa')
+    find('.room-in-button').click
+    find('.room-member')
+    page.driver.click(500, 100)
+    find('.message-container textarea').set('message')
+    find('.message-container button').click
+
+    abcd = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'abcd')
+    abcd.say(600, 100, 'say say say')
+
+
+    efg = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'efg')
+    efg.say(600, 200, 'say say say')
+
+    take_ss('ss', 1)
+
+    abcd.away
+    efg.away
+    reset_session!
+  end
 end
 
 class Friend

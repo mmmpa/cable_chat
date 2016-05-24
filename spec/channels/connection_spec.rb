@@ -33,15 +33,6 @@ RSpec.describe MessageChannel, :type => :model do
         connection.close
       end
     end
-
-    context 'exit' do
-      it 'transmit rejection' do
-        allow(connection).to receive(:transmit) { |**params|
-          expect(params[:type]).to eq(ActionCable::INTERNAL[:message_types][:rejection])
-        }
-        connection.exit
-      end
-    end
   end
 end
 
