@@ -35,10 +35,10 @@ class User < ApplicationRecord
   end
 
   def unsubscribed
-    unless destroyed?
-      self.subscription -= 1
-      save
-    end
+    return if destroyed?
+
+    self.subscription -= 1
+    save
   end
 
   def connected?
