@@ -18,7 +18,7 @@ export default class RoomInComponent extends React.Component {
       return null;
     }
 
-    return <div className="alert alert-danger">
+    return <div className="room-in-error alert alert-danger">
       <ul>{this.props.message.map((m, i)=> <li key={i}>{m}</li>)}</ul>
     </div>;
   }

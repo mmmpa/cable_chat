@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    user = User.find_by(uuid: cookies.signed[:uuid]) || User.create!(session_params)
+    user = User.retrieve_or_create!(cookies.signed[:uuid], session_params)
     cookies.signed[:uuid] = user.uuid
     head :ok
   rescue ActiveRecord::RecordInvalid => e

@@ -8,14 +8,13 @@ class Member
 
   class << self
     def create!(user)
-      member = new(user)
-      member.valid?
-      member
+      new(user)
     end
   end
 
   def initialize(user)
     self.user = user
+    valid?
   end
 
   def render

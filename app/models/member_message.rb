@@ -12,9 +12,7 @@ class MemberMessage
 
   class << self
     def create!(user, message, x, y)
-      user_message = new(user, message, x, y)
-      user_message.valid?
-      user_message
+      new(user, message, x, y)
     end
   end
 
@@ -23,6 +21,7 @@ class MemberMessage
     self.message = message
     self.x = x
     self.y = y
+    valid?
   end
 
   def render

@@ -1,14 +1,22 @@
 require 'capybara_helper'
 
 feature "Connect", :type => :feature do
-  before :each do |ex|
-    ready_ss(ex, 800)
-  end
+  before { |ex| ready_ss(ex, 800) }
+  after { reset_session! }
 
   let(:cookie) { "uuid=#{page.driver.cookies['uuid'].value}" }
   let(:ws) { WebSocket::Client::Simple.connect(mount_path, headers: {'Cookie' => cookie}) }
   let(:rejection_type) { ActionCable::INTERNAL[:message_types][:rejection] }
   let(:connected_type) { ActionCable::INTERNAL[:message_types][:welcome] }
+
+  scenario '入室失敗' do
+    visit '/'
+    find('.room-in-name')
+    take_ss('初期')
+    find('.room-in-button').click
+    find('.room-in-error')
+    take_ss('エラー表示')
+  end
 
   scenario '入室から退室まで' do
     visit '/'

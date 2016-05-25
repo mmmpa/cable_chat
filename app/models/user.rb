@@ -11,10 +11,8 @@ class User < ApplicationRecord
   scope :in, -> { where('subscription > 0') }
 
   class << self
-    def reject_or_create!(uuid, params)
-      user = find_by(uuid: uuid)
-      raise Already if user.try(:connected?)
-      create!(params)
+    def retrieve_or_create!(uuid, params)
+      find_by(uuid: uuid) || create!(params)
     end
   end
 
