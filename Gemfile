@@ -66,3 +66,7 @@ group :test do
   gem 'capybara-puma'
   gem 'websocket-client-simple'
 end
+
+group :test, :development do
+  gem 'jasmine-rails'
+end

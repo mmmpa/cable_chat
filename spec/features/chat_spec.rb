@@ -114,9 +114,41 @@ feature "Connect", :type => :feature do
 
     abcd.away
     efg.away
-    reset_session!
+  end
+
+  scenario 'スクリーンショット' do
+    u2 = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'TK')
+    visit '/'
+    find('.room-in-name').set('o296sm')
+    find('.room-in-button').click
+    find('.room-member')
+
+    say_in_current(page, 210, 160, 'オキシジェンゲッチューハァイ！')
+
+    u1 = Friend.new(Capybara::Session.new(:poltergeist), test_host, 'MMMPA')
+    u1.say(600, 100, 'The first rule of Fight Club')
+
+
+    u2.say(650, 200, 'きみらなんや')
+
+    say_in_current(page, 670, 250, '酢で中和しましょう！')
+    u2.say(675, 310, 'やめろ')
+    say_in_current(page, 710, 295, '酢で中和しましょう！')
+    page.driver.click(220, 300)
+
+    take_ss('ss', 1)
+
+    u1.away
+    u2.away
   end
 end
+
+def say_in_current(current, x, y, message)
+  current.driver.click(x, y)
+  current.find('.message-container textarea').set(message)
+  current.find('.message-container button').click
+end
+
 
 class Friend
   def initialize(session, url, name)
@@ -128,9 +160,7 @@ class Friend
   end
 
   def say(x, y, message)
-    @session.driver.click(x, y)
-    @session.find('.message-container textarea').set(message)
-    @session.find('.message-container button').click
+    say_in_current(@session, x, y, message)
   end
 
   def away

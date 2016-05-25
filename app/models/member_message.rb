@@ -28,7 +28,7 @@ class MemberMessage
     {
       name: user.name,
       user_key: user.key,
-      key: "#{Time.now.to_i}_#{user.key}",
+      key: "#{Time.now.to_i}_#{SecureRandom.hex(2)}_#{user.key}",
       message: message,
       x: x,
       y: y
