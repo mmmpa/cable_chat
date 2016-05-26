@@ -13,8 +13,6 @@ require 'rspec/rails'
 require 'factory_girl_rails'
 require 'rspec-html-matchers'
 require 'simplecov'
-require "authlogic/test_case"
-include Authlogic::TestCase
 require 'pp'
 
 Dir[Rails.root.join('spec/supports/**/*.rb')].each { |f| require f }
