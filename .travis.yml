@@ -5,7 +5,7 @@ services:
   - redis-server
   - postgresql
 before_install:
-  - npm i -g
+  - npm i
   - gem install bundler -v 1.10.3
   - psql -c 'create database cable_chat_test;' -U postgres
 install:
