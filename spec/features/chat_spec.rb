@@ -2,7 +2,11 @@ require 'capybara_helper'
 
 feature "Connect", :type => :feature do
   before { |ex| ready_ss(ex, 800) }
-  after { reset_session! }
+
+  after dZo
+    reset_session!
+    User.delete_all
+  end
 
   let(:cookie) { "uuid=#{page.driver.cookies['uuid'].value}" }
   let(:ws) { WebSocket::Client::Simple.connect(mount_path, headers: {'Cookie' => cookie}) }
@@ -148,7 +152,6 @@ def say_in_current(current, x, y, message)
   current.find('.message-container textarea').set(message)
   current.find('.message-container button').click
 end
-
 
 class Friend
   def initialize(session, url, name)

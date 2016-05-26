@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def unsubscribed
-    return if destroyed?
+    return if disconnected?
 
     self.subscription -= 1
     save

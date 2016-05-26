@@ -26,7 +26,10 @@ RSpec.describe MessageChannel, :type => :model do
     context 'valid message received' do
       it 'broadcast message' do
         allow(ActionCable.server).to receive(:broadcast) { |stream, data|
-          expect([stream, data]).to eq(['message', message: MemberMessage.create!(user, *valid_data).render])
+          data[:message].delete(:key)
+          message = MemberMessage.create!(user, *valid_data).render
+          message.delete(:key)
+          expect([stream, data]).to eq(['message', message: message])
         }
         channel.receive(valid_hash)
       end

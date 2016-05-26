@@ -27,7 +27,7 @@ RSpec.describe MemberChannel, :type => :model do
 
     context 'perform' do
       it 'broadcast to member' do
-        channel.unsubscribed
+        channel.hello
       end
     end
 

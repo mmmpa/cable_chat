@@ -22,8 +22,8 @@ class UserConnections
   def all(connection, &block)
     @mutex.synchronize do
       key = pick_key(connection)
-      pool[key].each do |connection|
-        connection.instance_eval(&block)
+      pool[key].each do |pooled|
+        pooled.instance_eval(&block)
       end
     end
   end
