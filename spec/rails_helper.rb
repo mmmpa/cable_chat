@@ -1,7 +1,9 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-require 'coveralls'
-Coveralls.wear!
+if ENV['CI']
+  require "codeclimate-test-reporter"
+  CodeClimate::TestReporter.start
+  require 'coveralls'
+  Coveralls.wear!
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
@@ -49,6 +51,8 @@ RSpec.configure do |config|
     FactoryGirl.sequences.clear
     FactoryGirl.find_definitions
   end
+
+  config.before { User.delete_all }
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

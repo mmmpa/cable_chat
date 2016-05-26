@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: cable_chat_development
+test:
+  <<: *default
+  database: cable_chat_test
+production:
+  <<: *default
+  database: cable_chat_production

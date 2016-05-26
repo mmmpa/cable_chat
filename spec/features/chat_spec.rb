@@ -3,10 +3,7 @@ require 'capybara_helper'
 feature "Connect", :type => :feature do
   before { |ex| ready_ss(ex, 800) }
 
-  after dZo
-    reset_session!
-    User.delete_all
-  end
+  after { reset_session! }
 
   let(:cookie) { "uuid=#{page.driver.cookies['uuid'].value}" }
   let(:ws) { WebSocket::Client::Simple.connect(mount_path, headers: {'Cookie' => cookie}) }
